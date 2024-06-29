@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reciept</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<style>
+
+/* -------------------------------------
+    GLOBAL
+    A very basic CSS reset
+------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    width: 100% !important;
+    height: 100%;
+    line-height: 1.6;
+}
+
+/* Let's make sure all tables have defaults */
+table td {
+    vertical-align: top;
+}
+
+/* -------------------------------------
+    BODY & CONTAINER
+------------------------------------- */
+body {
+    background-color: #296c92;
+}
+
+.body-wrap {
+    background-color: #f6f6f6;
+    width: 100%;
+}
+
+.container {
+    display: block !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    /* makes it centered */
+    clear: both !important;
+}
+
+.content {
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+    padding: 20px;
+}
+
+/* -------------------------------------
+    HEADER, FOOTER, MAIN
+------------------------------------- */
+.main {
+    background: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+}
+
+.content-wrap {
+    padding: 20px;
+}
+
+.content-block {
+    padding: 0 0 20px;
+}
+
+.header {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer {
+    width: 100%;
+    clear: both;
+    color: #999;
+    padding: 20px;
+}
+.footer a {
+    color: #999;
+}
+.footer p, .footer a, .footer unsubscribe, .footer td {
+    font-size: 12px;
+}
+
+/* -------------------------------------
+    TYPOGRAPHY
+------------------------------------- */
+h1, h2, h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #000;
+    margin: 40px 0 0;
+    line-height: 1.2;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+p, ul, ol {
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+p li, ul li, ol li {
+    margin-left: 5px;
+    list-style-position: inside;
+}
+
+/* -------------------------------------
+    LINKS & BUTTONS
+------------------------------------- */
+a {
+    color: #1ab394;
+    text-decoration: underline;
+}
+
+.btn-primary {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #1ab394;
+    border: solid #1ab394;
+    border-width: 5px 10px;
+    line-height: 2;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
+
+/* -------------------------------------
+    OTHER STYLES THAT MIGHT BE USEFUL
+------------------------------------- */
+.last {
+    margin-bottom: 0;
+}
+
+.first {
+    margin-top: 0;
+}
+
+.aligncenter {
+    text-align: center;
+}
+
+.alignright {
+    text-align: right;
+}
+
+.alignleft {
+    text-align: left;
+}
+
+.clear {
+    clear: both;
+}
+
+/* -------------------------------------
+    ALERTS
+    Change the class depending on warning email, good email or bad email
+------------------------------------- */
+.alert {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    padding: 20px;
+    text-align: center;
+    border-radius: 3px 3px 0 0;
+}
+.alert a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+}
+.alert.alert-warning {
+    background: #f8ac59;
+}
+.alert.alert-bad {
+    background: #ed5565;
+}
+.alert.alert-good {
+    background: #1ab394;
+}
+
+/* -------------------------------------
+    INVOICE
+    Styles for the billing table
+------------------------------------- */
+.invoice {
+    margin: 40px auto;
+    text-align: left;
+    width: 80%;
+}
+.invoice td {
+    padding: 5px 0;
+}
+.invoice .invoice-items {
+    width: 100%;
+}
+.invoice .invoice-items td {
+    border-top: #eee 1px solid;
+}
+.invoice .invoice-items .total td {
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    font-weight: 700;
+}
+
+/* -------------------------------------
+    RESPONSIVE AND MOBILE FRIENDLY STYLES
+------------------------------------- */
+@media only screen and (max-width: 640px) {
+    h1, h2, h3, h4 {
+        font-weight: 600 !important;
+        margin: 20px 0 5px !important;
+    }
+
+    h1 {
+        font-size: 22px !important;
+    }
+
+    h2 {
+        font-size: 18px !important;
+    }
+
+    h3 {
+        font-size: 16px !important;
+    }
+
+    .container {
+        width: 100% !important;
+    }
+
+    .content, .content-wrap {
+        padding: 10px !important;
+    }
+
+    .invoice {
+        width: 100% !important;
+    }
+}
+
+
+
+.no-print {
+            display: none;
+        }
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+
+</style>
+
+</head>
+
+<body>
+
+    <nav id="na" class="navbar navbar-light bg-light ">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Manager <%= id %> <small></small></span>
+            <span class="d-flex flex-row-reverse">
+                
+                <div class="p-2"><a href="/mng/homepage">Home</a></div>
+                <div class="p-2"><a href=""  onclick="return printImage()">Print Reciept</a></div>
+                
+                
+            </span>
+
+            
+        </div>
+    </nav>
+
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+
+    <div class="card">
+        <div class="card-body">
+          <div class="container mb-5 mt-3">
+            <div class="row d-flex align-items-baseline">
+              <div class="col-xl-9">
+                <p style="color: #7e8d9f;font-size: 20px;">Table >> <strong>ID: <%= table %></strong></p>
+              </div>
+              <hr>
+            </div>
+      
+            <div class="container">
+              <div class="col-md-12">
+                <div class="text-center">
+                  <i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
+                </div>
+      
+              </div>
+      
+      
+              <div class="row">
+                <div class="col-xl-8">
+                  <ul class="list-unstyled">
+                    
+                  </ul>
+                </div>
+                <div class="col-xl-4">
+                  <p class="text-muted">Invoice</p>
+                  <ul class="list-unstyled">
+                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                        class="fw-bold">ID:</span><%= bill.billidref %></li>
+                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                        class="fw-bold">Creation Date: </span><%= new Date(bill.date).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }) %></li>
+                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                        class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">
+                            <%= bill.status %></span></li>
+                  </ul>
+                </div>
+              </div>
+      
+              <div class="row my-2 mx-1 justify-content-center">
+                <table class="table table-striped table-borderless">
+                  <thead style="background-color:#84B0CA ;" class="text-white">
+                    <tr>
+                    
+                      <th scope="col">Item</th>
+                      <th scope="col">Qty</th>
+                      <th scope="col">Unit Price</th>
+                      <th scope="col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <% if (order.length > 0) { %>
+                        <% order.forEach((food, index) => { %>
+                    <tr>
+                    
+                      <td><%= menuDetails[index].foodname%></td>
+                      <td><%=food.quantity%></td>
+                      <td>RM<%= parseFloat(menuDetails[index].price).toFixed(2) %></td>
+                      <td>RM<%=realPrice[index]%></td>
+                    </tr>
+                    <% }) %>
+                    <% } else { %>
+                        <p>There are no Order</p>
+                    <% } %>
+                   
+                  </tbody>
+      
+                </table>
+              </div>
+              <div class="row">
+                <div class="col-xl-8">
+                  <p class="ms-3">For any changes please inform our staff</p>
+      
+                </div>
+                <div class="col-xl-3">
+                  <p class="text-black float-start"><span class="text-black me-3"> Total Amount :</span><span
+                      style="font-size: 15px;">Rm <%= total%></span></p>
+
+                      <p class="text-black float-start"><span class="text-black me-3"> Total Pay :</span><span
+                        style="font-size: 15px;">Rm <%= pay%></span></p>
+
+                        <p class="text-black float-start"><span class="text-black me-3"> Change :</span><span
+                            style="font-size: 15px;">Rm <%= net%></span></p>
+                </div>
+
+            
+                    
+                  
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-xl-10">
+                  
+                </div>
+               
+              </div>
+      
+            </div>
+          </div>
+        </div>
+      </div>
+                    
+
+      </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script>
+
+        
+        
+        
+function printImage() {
+    if (confirm("Are you sure you want to print this image?")) {
+        window.print();
+    }
+    return false;
+}
+
+
+
+
+        
+                </script>
+
+
+                
+       
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>      
+</body>
+
+
+
+
+
+
+</html>

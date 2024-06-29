@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+
+<title>LIST</title>
+
+
+<style>
+
+ html {
+	height: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	background-image: url("/back1.jpg");
+        background-size: cover;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+a.button {
+    padding: 1px 6px;
+    border: 1px outset buttonborder;
+    border-radius: 3px;
+    color: buttontext;
+    background-color: blue;
+    text-decoration: none;
+}
+
+body{
+
+    height: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	background-image: url("/back1.jpg");
+        background-size: cover;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+}
+.avatar.sm {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: .818125rem;
+}
+.table-nowrap .table td, .table-nowrap .table th {
+    white-space: nowrap;
+}
+.table>:not(caption)>*>* {
+    padding: 0.75rem 1.25rem;
+    border-bottom-width: 1px;
+}
+table th {
+    font-weight: 600;
+    background-color: #eeecfd !important;
+}
+
+
+/* Define neon color for the container */
+.custom-bg {
+  background-color: #125083; /* Neon green background */
+  color: #881c1c; /* Black text for contrast */
+}
+
+
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <nav id="na"class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1"> Employee   <%= id%> <small >  </small></span>
+          <span class="d-flex">
+              
+              <a href="/emp/homepage">Home</a>
+          </span>
+        </div>
+      </nav>
+
+
+      <div class="container-fluid px-1 py-5 mx-auto ">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center border custom-bg ">
+          <h2>INVENTORY LIST   </h2>
+    </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-3 mb-lg-5">
+                <div class="overflow-hidden card table-nowrap table-card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Inventory List</h5>
+                        <a href="/emp/addItem/<%= id%>" class="btn btn-light btn-sm">Add Item</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead class="small text-uppercase bg-body text-muted">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>price</th>
+                                    <th>unit</th>
+                                    <th>Quantity</th>
+                                  
+                                    <th>Category</th>
+                                    <th>Last Updated</th>
+                                    <th class="text-end">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+
+                                <% if(inv.length >0)  { %>
+                                    <% inv.forEach(invs => { %>
+                                <tr class="align-middle">
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            
+                                            <div>
+                                                <div class="h6 mb-0 lh-1"> <%= invs.itmname %> </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><%= invs.itmprice %></td>
+                                    <td><%= invs.unit %></td>
+                                    <td> <span class="d-inline-block align-middle"><%= invs.itmquantity %></span></td>
+                                  
+                                    <td><%= invs.category %></td>
+                                    <td><%= invs.lastupdate %></td>
+                                    <td class="text-end">
+                                     
+                                            
+                                             
+                                        <h5><a href="/emp/delete/<%= id%>/<%= invs.itemid %>" class="button">Delete</a></h5>
+                                        <h5><a href="/emp/updateitemForm/<%= id%>/<%= invs.itemid %>" class="button">Update</a></h5>
+                                           
+                                    </td>
+                                </tr>
+                                <%  }) %>
+                                <% }  else { %>
+
+                                    <p>No DATA </p>
+                            
+                                    <% }  %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPORT</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+
+    <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <style>
+       .container {
+            width: 90%;
+            margin: auto;
+            text-align: center;
+        }
+        #myChart {
+            width: 1000px !important; /* Make the canvas 1000px wide */
+            height: 600px !important;  /* Make the canvas 600px high */
+            display: block;
+            margin: 0 auto;
+        }
+
+
+        body{
+            height: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	background-image: url("/back4.jpg");
+        background-size: cover;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+.card{
+	background-color: #fff;
+	width: 280px;
+	border-radius: 33px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 2rem !important;
+}
+.top-container{
+    display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+           
+}
+.profile-image{
+	border-radius: 10px;
+	border: 2px solid #5957f9;
+}
+.name{
+	font-size: 15px;
+	font-weight: bold;
+	color: #272727;
+	position: relative;
+	top: 8px;
+}
+.mail{
+	font-size: 14px;
+	color: grey;
+	position: relative;
+	top: 2px;
+}
+.middle-container{
+	background-color: #eee;
+	border-radius: 12px;
+
+}
+.middle-container:hover {
+	border: 1px solid #5957f9;
+}
+.dollar-div{
+	background-color: #5957f9;
+	padding: 12px;
+	border-radius: 10px;
+}
+.round-div{
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.dollar{
+	font-size: 16px !important;
+	color: #5957f9 !important;
+	font-weight: bold !important;
+}
+
+
+.current-balance{
+	font-size: 15px;
+	color: #272727;
+	font-weight: bold;
+}
+.amount{
+	color: #5957f9;
+	font-size: 16px;
+	font-weight: bold;
+}
+.dollar-sign{
+	font-size: 16px;
+	color: #272727;
+	font-weight: bold;
+}
+
+.recent-border{
+	border-left: 2px solid #5957f9;
+	display: flex;
+	align-items: center;
+
+}
+.recent-border:hover {
+	border-bottom: 1px solid #dee2e6!important;
+}
+
+.recent-orders{
+	font-size: 16px;
+	font-weight: 700;
+	color: #5957f9;
+	margin-left: 2px;
+}
+
+.wishlist{
+	font-size: 16px;
+	font-weight: 700;
+	color: #272727;
+
+}
+.wishlist-border:hover{
+	border-bottom: 1px solid #dee2e6!important;
+}
+.fashion-studio{
+	font-size: 16px;
+	font-weight: 700;
+	color: #272727;
+}
+.fashion-studio-border:hover {
+	border-bottom: 1px solid #dee2e6!important;
+}
+
+#t{
+    margin-left: 10cm;
+}
+</style>
+
+
+
+
+
+  <!-- Template Main CSS File -->
+ 
+
+</head>
+<body>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <nav id="na" class="navbar navbar-light bg-light ">
+      <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Manager <%= id %> <small></small></span>
+          <span class="d-flex flex-row-reverse">
+              
+              <div class="p-2"><a href="/mng/homepage">Home</a></div>
+              
+              
+              
+          </span>
+
+          
+      </div>
+  </nav>
+
+
+
+
+  <div class="container d-flex justify-content-center mt-5" id="t">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+   
+        <div class="col">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body text-center">Number of Order</div>
+                <div class="card-footer d-flex align-items-center justify-content-between text-center">
+                    <p class="card-text"><%= numberofbill %></p>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="col">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body text-center">Total Amount need To Pay</div>
+                <div class="card-footer d-flex align-items-center justify-content-between text-center">
+                    <p class="card-text">RM<%= totalofneedtopay.toFixed(2) %></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body text-center">Total Amount of Actual Payment</div>
+                <div class="card-footer d-flex align-items-center justify-content-between text-center">
+                    <p class="card-text">RM<%= amountThatCustPay.toFixed(2) %></p>
+                </div>
+            </div>
+        </div>
+
+</div>
+</div>
+
+<div class="container d-flex justify-content-center mt-5">
+
+	<div class="card">
+		
+		<div class="top-container">
+			
+			
+			
+			<div class="ml-3    ">
+				<h5 class="name">Total sales for today</h5>
+				
+			</div>
+		</div>
+
+
+		<div class="middle-container d-flex justify-content-between align-items-center mt-3 p-2">
+				<div class="dollar-div px-3">
+					
+					<div class="round-div"><i class="fa fa-dollar dollar"></i></div>
+
+				</div>
+				<div class="d-flex flex-column text-right mr-2">
+					<span class="current-balance">Current Sales</span>
+					<span class="amount"><span class="dollar-sign">RM</span><%= netWorth.toFixed(2) %></span>
+				</div>
+
+		</div>
+
+		
+		
+	</div>
+	
+</div>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+    
+</body>
+</html>
